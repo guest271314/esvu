@@ -217,7 +217,7 @@ class EngineInstaller {
       name += '.cmd';
       source = `@echo off\r\n${body} %*\r\n`;
     } else {
-      source = `#!/usr/bin/env bash\n${body} "$@"\n`;
+      source = `#!/usr/bin/env bash\nexec ${body} "$@"\n`;
     }
     const full = path.join(ESVU_PATH, 'bin', name);
     await fs.promises.writeFile(full, source, {
